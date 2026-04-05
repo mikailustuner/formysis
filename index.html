@@ -1,0 +1,1121 @@
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    /* Color Palette - Deep Premium Dark */
+    --bg-main: #0a0a0c;
+    --bg-card: rgba(255, 255, 255, 0.05);
+    --bg-card-hover: rgba(255, 255, 255, 0.08);
+    --border-glass: rgba(255, 255, 255, 0.1);
+    
+    /* Subject Accents */
+    --accent-turkce: #10b981; /* Emerald */
+    --accent-mat: #f59e0b;    /* Amber */
+    --accent-fen: #3b82f6;    /* Blue */
+    --accent-sosyal: #8b5cf6; /* Violet */
+    --accent-tekrar: #ef4444; /* Rose */
+    
+    --text-primary: #f8fafc;
+    --text-secondary: #94a3b8;
+    --text-muted: #64748b;
+    
+    --glass-blur: blur(12px);
+    --border-radius: 16px;
+    --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; -webkit-font-smoothing: antialiased; }
+
+  body { 
+    font-family: 'Outfit', sans-serif; 
+    background-color: var(--bg-main);
+    color: var(--text-primary);
+    line-height: 1.5;
+    background-image: 
+      radial-gradient(circle at 0% 0%, rgba(59, 130, 246, 0.1) 0%, transparent 40%),
+      radial-gradient(circle at 100% 100%, rgba(139, 92, 246, 0.1) 0%, transparent 40%);
+    min-height: 100vh;
+  }
+
+  .app {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 2rem 1.5rem 6rem;
+  }
+
+  /* Typography */
+  h1 { font-weight: 700; letter-spacing: -0.02em; }
+  h2, h3 { font-weight: 600; }
+
+  /* Hero Section */
+  .hero {
+    background: linear-gradient(135deg, rgba(30, 41, 59, 0.4) 0%, rgba(15, 23, 42, 0.6) 100%);
+    backdrop-filter: var(--glass-blur);
+    -webkit-backdrop-filter: var(--glass-blur);
+    border: 1px solid var(--border-glass);
+    border-radius: 24px;
+    padding: 3rem;
+    margin-bottom: 2rem;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+  }
+
+  .hero::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -10%;
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, rgba(139, 92, 246, 0.2) 0%, transparent 70%);
+    border-radius: 50%;
+    z-index: 0;
+  }
+
+  .hero-content { position: relative; z-index: 1; }
+
+  .hero h1 {
+    font-size: 2.5rem;
+    margin-bottom: 0.75rem;
+    background: linear-gradient(to bottom right, #fff 30%, #94a3b8);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .hero p {
+    font-size: 1.1rem;
+    color: var(--text-secondary);
+    margin-bottom: 2.5rem;
+  }
+
+  .hero-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 1.25rem;
+  }
+
+  .hero-stat {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 16px;
+    padding: 1.25rem;
+    transition: var(--transition);
+  }
+
+  .hero-stat:hover {
+    background: rgba(255, 255, 255, 0.06);
+    transform: translateY(-2px);
+  }
+
+  .hero-stat .label {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+  }
+
+  .hero-stat .value {
+    font-size: 1.75rem;
+    font-weight: 700;
+  }
+
+  .hero-stat .value span {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    font-weight: 400;
+    margin-left: 4px;
+  }
+
+  /* Progress Section */
+  .countdown-bar {
+    background: var(--bg-card);
+    backdrop-filter: var(--glass-blur);
+    -webkit-backdrop-filter: var(--glass-blur);
+    border: 1px solid var(--border-glass);
+    border-radius: 20px;
+    padding: 1.5rem 2rem;
+    margin-bottom: 2rem;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    align-items: center;
+    gap: 3rem;
+  }
+
+  .countdown-info {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    white-space: nowrap;
+  }
+
+  .countdown-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: #3b82f6;
+    box-shadow: 0 0 15px rgba(59, 130, 246, 0.6);
+    animation: pulse-glow 2s infinite;
+  }
+
+  @keyframes pulse-glow {
+    0%, 100% { opacity: 0.8; transform: scale(1); }
+    50% { opacity: 1; transform: scale(1.1); box-shadow: 0 0 25px rgba(59, 130, 246, 0.8); }
+  }
+
+  .countdown-text { font-size: 1rem; color: var(--text-secondary); }
+  .countdown-text strong { color: var(--text-primary); font-weight: 600; }
+
+  .progress-wrapper { width: 100%; }
+  .progress-label {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.9rem;
+    margin-bottom: 0.75rem;
+    color: var(--text-secondary);
+  }
+
+  .progress-track {
+    height: 10px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 5px;
+    overflow: hidden;
+  }
+
+  .progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #3b82f6, #8b5cf6);
+    border-radius: 5px;
+    transition: width 1s cubic-bezier(0.34, 1.56, 0.64, 1);
+    box-shadow: 0 0 20px rgba(139, 92, 246, 0.3);
+  }
+
+  /* Tabs */
+  .tabs {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 2.5rem;
+    padding: 6px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--border-glass);
+    border-radius: 14px;
+  }
+
+  .tab {
+    flex: 1;
+    padding: 0.875rem;
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: var(--text-muted);
+    background: transparent;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: var(--transition);
+  }
+
+  .tab:hover { color: var(--text-primary); background: rgba(255, 255, 255, 0.05); }
+  .tab.active {
+    background: var(--text-primary);
+    color: var(--bg-main);
+    box-shadow: 0 10px 20px -5px rgba(0, 0, 0, 0.3);
+  }
+
+  .section { display: none; animation: fadeIn 0.4s ease-out; }
+  .section.active { display: block; }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* Week & Day Cards */
+  .week-container { margin-bottom: 4rem; }
+  .week-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1.5rem;
+    padding: 0 0.5rem;
+  }
+
+  .week-title { font-size: 1.5rem; font-weight: 700; color: var(--text-primary); }
+  .week-badge {
+    font-size: 0.8rem;
+    padding: 4px 14px;
+    border-radius: 20px;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+  }
+
+  .days-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .day-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-glass);
+    border-radius: 20px;
+    padding: 1.5rem;
+    transition: var(--transition);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .day-card:hover {
+    background: var(--bg-card-hover);
+    border-color: rgba(255, 255, 255, 0.2);
+    transform: translateY(-4px);
+    box-shadow: 0 20px 40px -20px rgba(0, 0, 0, 0.5);
+  }
+
+  .day-header {
+    margin-bottom: 1.25rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--border-glass);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .day-name { font-size: 1.1rem; font-weight: 600; }
+  .day-date { font-size: 0.8rem; color: var(--text-muted); font-weight: 500; }
+
+  /* Sessions */
+  .session {
+    position: relative;
+    padding: 1rem;
+    margin-bottom: 0.75rem;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid transparent;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: var(--transition);
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .session:last-child { margin-bottom: 0; }
+  .session:hover {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: var(--border-glass);
+  }
+
+  .session.completed {
+    opacity: 0.4;
+    background: rgba(16, 185, 129, 0.05);
+  }
+
+  .session-check {
+    width: 24px;
+    height: 24px;
+    border-radius: 8px;
+    border: 2px solid var(--border-glass);
+    background: rgba(255, 255, 255, 0.02);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: var(--transition);
+    flex-shrink: 0;
+  }
+
+  .session.completed .session-check {
+    background: #10b981;
+    border-color: #10b981;
+    box-shadow: 0 0 10px rgba(16, 185, 129, 0.4);
+  }
+
+  .session.completed .session-check::after {
+    content: '✓';
+    color: white;
+    font-size: 14px;
+    font-weight: bold;
+  }
+
+  .session-content { flex: 1; }
+  
+  .session-subject {
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 0.25rem;
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 4px;
+  }
+
+  .session-topic { font-size: 0.95rem; font-weight: 500; margin-bottom: 0.2rem; }
+  .session-meta { font-size: 0.75rem; color: var(--text-muted); }
+
+  /* Break Row */
+  .break-row {
+    margin: 1rem 0;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    opacity: 0.4;
+  }
+  .break-line { flex: 1; height: 1px; background: var(--border-glass); }
+  .break-label { font-size: 0.7rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.1em; }
+
+  /* Cards (Stats, Info, etc.) */
+  .stats-section, .info-card, .schedule-card {
+    background: var(--bg-card);
+    backdrop-filter: var(--glass-blur);
+    -webkit-backdrop-filter: var(--glass-blur);
+    border: 1px solid var(--border-glass);
+    border-radius: 20px;
+    padding: 2rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .info-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin-top: 2rem;
+  }
+
+  /* Responsive Adjustments */
+  @media (max-width: 900px) {
+    .countdown-bar { grid-template-columns: 1fr; gap: 1.5rem; }
+    .hero { padding: 2rem; }
+    .hero h1 { font-size: 2rem; }
+  }
+
+  @media (max-width: 600px) {
+    .app { padding: 1rem 1rem 4rem; }
+    .hero { padding: 1.5rem; text-align: center; }
+    .hero-stats { grid-template-columns: 1fr 1fr; }
+    .tabs { overflow-x: auto; padding: 4px; }
+    .tab { font-size: 0.85rem; padding: 0.6rem; }
+  }
+</style>
+
+<div class="app">
+  <div class="hero">
+    <div class="hero-content">
+      <h1>TYT 2026 — Master Plan</h1>
+      <p>Eşit ağırlık odaklı · Günde 8 saat · Haziran 2026 sınavına hazırlık</p>
+      <div class="hero-stats">
+        <div class="hero-stat">
+          <div class="label">Kalan gün</div>
+          <div class="value" id="gunSayac">—</div>
+        </div>
+        <div class="hero-stat">
+          <div class="label">Program süresi</div>
+          <div class="value">30 <span>gün</span></div>
+        </div>
+        <div class="hero-stat">
+          <div class="label">Günlük çalışma</div>
+          <div class="value">8 <span>saat</span></div>
+        </div>
+        <div class="hero-stat">
+          <div class="label">Toplam hedef</div>
+          <div class="value">240 <span>sa</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="countdown-bar">
+    <div class="countdown-info">
+      <div class="countdown-dot"></div>
+      <div class="countdown-text">Sınava <strong id="sinav-gun">—</strong> gün kaldı</div>
+    </div>
+    <div class="progress-wrapper">
+      <div class="progress-label">
+        <span>Genel Program İlerlemesi</span>
+        <span id="ilerleme-yuzde">%0</span>
+      </div>
+      <div class="progress-track">
+        <div class="progress-fill" id="ilerleme-bar" style="width: 0%"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="tabs">
+    <button class="tab active" onclick="showTab('program')">Program</button>
+    <button class="tab" onclick="showTab('gunluk')">Günlük Düzen</button>
+    <button class="tab" onclick="showTab('konular')">Konu Dağılımı</button>
+    <button class="tab" onclick="showTab('taktik')">Strateji & Taktik</button>
+  </div>
+
+  <div id="tab-program" class="section active">
+
+    <div class="subject-legend">
+      <div class="legend-item"><div class="legend-dot" style="background:var(--accent-turkce)"></div>Türkçe</div>
+      <div class="legend-item"><div class="legend-dot" style="background:var(--accent-mat)"></div>Matematik</div>
+      <div class="legend-item"><div class="legend-dot" style="background:var(--accent-fen)"></div>Fen Bilimleri</div>
+      <div class="legend-item"><div class="legend-dot" style="background:var(--accent-sosyal)"></div>Sosyal Bilimler</div>
+      <div class="legend-item"><div class="legend-dot" style="background:var(--accent-tekrar)"></div>Tekrar/Deneme</div>
+    </div>
+
+    <div id="weeks-container"></div>
+  </div>
+
+  <div id="tab-gunluk" class="section">
+    <div class="schedule-card">
+      <h3>Sabah Bloğu — Taze Zihin (Zor Dersler)</h3>
+      <div class="time-block">
+        <div class="time-label">07:30 – 08:00</div>
+        <div class="time-content">
+          <div class="time-title">Uyanış & Hazırlık</div>
+          <div class="time-detail">Hafif egzersiz, kahvaltı, gün planını gözden geçir</div>
+          <span class="time-tag" style="background:var(--color-background-secondary);color:var(--color-text-secondary)">ön ısınma</span>
+        </div>
+      </div>
+      <div class="time-block">
+        <div class="time-label">08:00 – 09:30</div>
+        <div class="time-content">
+          <div class="time-title">Ders Bloğu 1 — 90 dk</div>
+          <div class="time-detail">Zorlu konu (Matematik veya Türkçe yeni konu)</div>
+          <span class="time-tag" style="background:#fff3e0;color:#e67e22">yoğun odak</span>
+        </div>
+      </div>
+      <div class="time-block">
+        <div class="time-label">09:30 – 09:45</div>
+        <div class="time-content">
+          <div class="time-title">Kısa Mola — 15 dk</div>
+          <div class="time-detail">Su iç, biraz yürü, gözlerini dinlendir. Ekrana bakma.</div>
+          <span class="time-tag" style="background:var(--color-background-success);color:var(--color-text-success)">zorunlu mola</span>
+        </div>
+      </div>
+      <div class="time-block">
+        <div class="time-label">09:45 – 11:15</div>
+        <div class="time-content">
+          <div class="time-title">Ders Bloğu 2 — 90 dk</div>
+          <div class="time-detail">Devam konusu veya soru çözümü</div>
+          <span class="time-tag" style="background:#fff3e0;color:#e67e22">yoğun odak</span>
+        </div>
+      </div>
+      <div class="time-block">
+        <div class="time-label">11:15 – 11:30</div>
+        <div class="time-content">
+          <div class="time-title">Kısa Mola — 15 dk</div>
+          <div class="time-detail">Hafif snack, biraz hareket</div>
+          <span class="time-tag" style="background:var(--color-background-success);color:var(--color-text-success)">zorunlu mola</span>
+        </div>
+      </div>
+      <div class="time-block">
+        <div class="time-label">11:30 – 13:00</div>
+        <div class="time-content">
+          <div class="time-title">Ders Bloğu 3 — 90 dk</div>
+          <div class="time-detail">Farklı ders (Fen veya Sosyal)</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="schedule-card">
+      <h3>Öğle Arası — Zorunlu Dinlenme</h3>
+      <div class="time-block">
+        <div class="time-label">13:00 – 14:30</div>
+        <div class="time-content">
+          <div class="time-title">Öğle Molası — 90 dk</div>
+          <div class="time-detail">Yemek, kısa uyku (20-30 dk max), yürüyüş. Bu mola verimlilik için kritik.</div>
+          <span class="time-tag" style="background:var(--color-background-success);color:var(--color-text-success)">büyük mola — atlanmaz</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="schedule-card">
+      <h3>Öğleden Sonra Bloğu</h3>
+      <div class="time-block">
+        <div class="time-label">14:30 – 16:00</div>
+        <div class="time-content">
+          <div class="time-title">Ders Bloğu 4 — 90 dk</div>
+          <div class="time-detail">Sabah konusunun soru pekiştirme veya yeni orta güçlükte konu</div>
+        </div>
+      </div>
+      <div class="time-block">
+        <div class="time-label">16:00 – 16:20</div>
+        <div class="time-content">
+          <div class="time-title">Mola — 20 dk</div>
+          <div class="time-detail">Çay/atıştırmalık, zihinsel reset</div>
+          <span class="time-tag" style="background:var(--color-background-success);color:var(--color-text-success)">zorunlu mola</span>
+        </div>
+      </div>
+      <div class="time-block">
+        <div class="time-label">16:20 – 17:50</div>
+        <div class="time-content">
+          <div class="time-title">Ders Bloğu 5 — 90 dk</div>
+          <div class="time-detail">Farklı ders veya soru bankası çözümü</div>
+        </div>
+      </div>
+      <div class="time-block">
+        <div class="time-label">17:50 – 18:20</div>
+        <div class="time-content">
+          <div class="time-title">Akşam Molası — 30 dk</div>
+          <div class="time-detail">Yemek, dinlenme, yürüyüş. Sosyal medyayı bu molaya sakla.</div>
+          <span class="time-tag" style="background:var(--color-background-success);color:var(--color-text-success)">zorunlu mola</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="schedule-card">
+      <h3>Akşam Bloğu — Pekiştirme</h3>
+      <div class="time-block">
+        <div class="time-label">18:20 – 19:20</div>
+        <div class="time-content">
+          <div class="time-title">Ders Bloğu 6 — 60 dk</div>
+          <div class="time-detail">Günün özetini çıkar, gün içi hataları gözden geçir</div>
+          <span class="time-tag" style="background:var(--color-background-info);color:var(--color-text-info)">pekiştirme</span>
+        </div>
+      </div>
+      <div class="time-block">
+        <div class="time-label">19:20 – 20:00</div>
+        <div class="time-content">
+          <div class="time-title">Toplam Tekrar & Özet — 40 dk</div>
+          <div class="time-detail">Günün notlarını tekrar et, yarın ne var yaz</div>
+          <span class="time-tag" style="background:var(--color-background-info);color:var(--color-text-info)">pekiştirme</span>
+        </div>
+      </div>
+      <div class="time-block">
+        <div class="time-label">20:00+</div>
+        <div class="time-content">
+          <div class="time-title">Serbest Zaman & Uyku</div>
+          <div class="time-detail">En geç 23:00'de uyu. 7-8 saat uyku beyni temizler ve öğrendiklerini pekiştirir.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="note-box">
+      Toplam günlük ders süresi: 7 saat 30 dk + mola toplamı 2 saat 50 dk. Molalar çalışmanın parçasıdır — atlanmaz.
+    </div>
+  </div>
+
+  <div id="tab-konular" class="section">
+    <div class="stats-section">
+      <h3>Ders bazında saat dağılımı (30 günlük program)</h3>
+      <div class="stat-row">
+        <div class="stat-label">Türkçe</div>
+        <div class="stat-bar-track"><div class="stat-bar-fill" style="width:28%;background:#27ae60"></div></div>
+        <div class="stat-val">~67 sa</div>
+      </div>
+      <div class="stat-row">
+        <div class="stat-label">Matematik</div>
+        <div class="stat-bar-track"><div class="stat-bar-fill" style="width:18%;background:#e67e22"></div></div>
+        <div class="stat-val">~43 sa</div>
+      </div>
+      <div class="stat-row">
+        <div class="stat-label">Fen Bilimleri</div>
+        <div class="stat-bar-track"><div class="stat-bar-fill" style="width:22%;background:#2980b9"></div></div>
+        <div class="stat-val">~53 sa</div>
+      </div>
+      <div class="stat-row">
+        <div class="stat-label">Sosyal Bilimler</div>
+        <div class="stat-bar-track"><div class="stat-bar-fill" style="width:22%;background:#8e44ad"></div></div>
+        <div class="stat-val">~53 sa</div>
+      </div>
+      <div class="stat-row">
+        <div class="stat-label">Deneme & Tekrar</div>
+        <div class="stat-bar-track"><div class="stat-bar-fill" style="width:10%;background:#e94560"></div></div>
+        <div class="stat-val">~24 sa</div>
+      </div>
+    </div>
+
+    <div class="info-grid">
+      <div class="info-card">
+        <h3>Türkçe Konuları</h3>
+        <div class="info-item"><span class="key">Sözcük türleri</span><span class="val">3 gün</span></div>
+        <div class="info-item"><span class="key">Cümle bilgisi</span><span class="val">3 gün</span></div>
+        <div class="info-item"><span class="key">Yazım kuralları</span><span class="val">2 gün</span></div>
+        <div class="info-item"><span class="key">Noktalama</span><span class="val">1 gün</span></div>
+        <div class="info-item"><span class="key">Anlam bilgisi</span><span class="val">3 gün</span></div>
+        <div class="info-item"><span class="key">Paragraf soruları</span><span class="val">3 gün</span></div>
+        <div class="info-item"><span class="key">Ses & yapı bilgisi</span><span class="val">2 gün</span></div>
+      </div>
+      <div class="info-card">
+        <h3>Matematik Konuları (Hedef: 10 D)</h3>
+        <div class="info-item"><span class="key">Sayı sistemleri</span><span class="val">2 gün</span></div>
+        <div class="info-item"><span class="key">Bölünebilme</span><span class="val">1 gün</span></div>
+        <div class="info-item"><span class="key">Oran-orantı</span><span class="val">2 gün</span></div>
+        <div class="info-item"><span class="key">Problemler (temel)</span><span class="val">3 gün</span></div>
+        <div class="info-item"><span class="key">Yüzde-faiz</span><span class="val">1 gün</span></div>
+        <div class="info-item"><span class="key">Denklemler</span><span class="val">1 gün</span></div>
+        <div class="info-item"><span class="key">Küme teorisi</span><span class="val">1 gün</span></div>
+      </div>
+      <div class="info-card">
+        <h3>Fen Bilimleri Konuları</h3>
+        <div class="info-item"><span class="key">Fizik: Hareket</span><span class="val">2 gün</span></div>
+        <div class="info-item"><span class="key">Fizik: Kuvvet</span><span class="val">2 gün</span></div>
+        <div class="info-item"><span class="key">Kimya: Atom</span><span class="val">2 gün</span></div>
+        <div class="info-item"><span class="key">Kimya: Periyodik</span><span class="val">2 gün</span></div>
+        <div class="info-item"><span class="key">Biyoloji: Hücre</span><span class="val">2 gün</span></div>
+        <div class="info-item"><span class="key">Biyoloji: Canlı çeşit.</span><span class="val">2 gün</span></div>
+        <div class="info-item"><span class="key">Biyoloji: Ekosistem</span><span class="val">1 gün</span></div>
+      </div>
+      <div class="info-card">
+        <h3>Sosyal Bilimler Konuları</h3>
+        <div class="info-item"><span class="key">Tarih: Osmanlı</span><span class="val">2 gün</span></div>
+        <div class="info-item"><span class="key">Tarih: Kurtuluş</span><span class="val">2 gün</span></div>
+        <div class="info-item"><span class="key">Tarih: Cumhuriyet</span><span class="val">2 gün</span></div>
+        <div class="info-item"><span class="key">Coğrafya: Fiziki</span><span class="val">2 gün</span></div>
+        <div class="info-item"><span class="key">Coğrafya: Beşeri</span><span class="val">2 gün</span></div>
+        <div class="info-item"><span class="key">Felsefe / Psikoloji</span><span class="val">2 gün</span></div>
+        <div class="info-item"><span class="key">Din Kültürü</span><span class="val">1 gün</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div id="tab-taktik" class="section">
+    <div class="warning-box">
+      Matematik hedefi 10 doğru. Bu, her matemetik oturumu için "anla, ezberleme" yaklaşımını ve temel konu seçimini gerektirir.
+    </div>
+
+    <div class="schedule-card">
+      <h3>Matematik Stratejisi (Kötü Olan İçin)</h3>
+      <div class="time-block">
+        <div class="time-label">Hedef</div>
+        <div class="time-content">
+          <div class="time-title">10 doğru = 40 soruda doğru strateji</div>
+          <div class="time-detail">Kolay konulara odaklan, zor konuları atla. Temel aritmetik + oran-orantı + yüzde = 10 doğru garantisi.</div>
+        </div>
+      </div>
+      <div class="time-block">
+        <div class="time-label">Yöntem</div>
+        <div class="time-content">
+          <div class="time-title">Soru tiplerini ezberle, konu değil</div>
+          <div class="time-detail">10-15 soru tipi çöz, o tipin şablonunu öğren. Tekrar tekrar aynı tip sorular çalış.</div>
+        </div>
+      </div>
+      <div class="time-block">
+        <div class="time-label">Hangi konular</div>
+        <div class="time-content">
+          <div class="time-title">Sayılar, bölünebilme, oran-orantı, yüzde-faiz, temel problem</div>
+          <div class="time-detail">Denklem sistemleri, olasılık, istatistik ATLAYINIR. Zaman kaybı.</div>
+        </div>
+      </div>
+      <div class="time-block">
+        <div class="time-label">Günlük süre</div>
+        <div class="time-content">
+          <div class="time-title">Günde yalnızca 1.5 saat matematik</div>
+          <div class="time-detail">Daha fazla zaman eklemek enerji çalar ve diğer derslerden çalar. Disiplinli kal.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="schedule-card">
+      <h3>Türkçe & Sosyal Stratejisi (Ana Skor Kaynağı)</h3>
+      <div class="time-block">
+        <div class="time-label">Türkçe</div>
+        <div class="time-content">
+          <div class="time-title">Paragraf soruları ana odak</div>
+          <div class="time-detail">40 sorunun 25-30'u paragraf. Günde 10 paragraf soru çöz. Anlam çıkarma becerisi geliştir.</div>
+        </div>
+      </div>
+      <div class="time-block">
+        <div class="time-label">Sosyal</div>
+        <div class="time-content">
+          <div class="time-title">Tarih kronolojisi + coğrafya ezber</div>
+          <div class="time-detail">Tarih için olay sırası öğren. Coğrafya için harita üzerinde çalış. Günde 20-30 soru.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="schedule-card">
+      <h3>Mola Kuralları (Beyin Bilimi)</h3>
+      <div class="time-block">
+        <div class="time-label">Pomodoro</div>
+        <div class="time-content">
+          <div class="time-title">90 dk çalış, 15 dk mola — kesinlikle uy</div>
+          <div class="time-detail">90 dk'nın üzerine çıkma. Beyin 90 dk'dan sonra verimsizleşir, devam etmek boşa gider.</div>
+        </div>
+      </div>
+      <div class="time-block">
+        <div class="time-label">Molada</div>
+        <div class="time-content">
+          <div class="time-title">Ekran yok, telefon yok</div>
+          <div class="time-detail">Yürü, su iç, gözleri kapat. Sosyal medya "mola" değil — beyin o sırada çalışmaya devam eder.</div>
+        </div>
+      </div>
+      <div class="time-block">
+        <div class="time-label">Uyku</div>
+        <div class="time-content">
+          <div class="time-title">7-8 saat uyku zorunlu</div>
+          <div class="time-detail">Öğrenilen bilgi uyku sırasında beyinde pekişir. Az uyku = gün içindeki çalışmanın yarısı boşa gider.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="schedule-card">
+      <h3>Haftalık Deneme Planı</h3>
+      <div class="time-block">
+        <div class="time-label">1. & 2. hafta</div>
+        <div class="time-content">
+          <div class="time-title">Deneme yok, saf konu çalışması</div>
+          <div class="time-detail">İlk 2 haftada deneme çözme. Konu tamamlanmadan deneme verim vermiyor.</div>
+        </div>
+      </div>
+      <div class="time-block">
+        <div class="time-label">3. hafta</div>
+        <div class="time-content">
+          <div class="time-title">Haftada 1 TYT denemesi</div>
+          <div class="time-detail">Pazar günleri sınav koşullarında (135 dk, tek seferde). Hataları analiz et.</div>
+        </div>
+      </div>
+      <div class="time-block">
+        <div class="time-label">4. hafta</div>
+        <div class="time-content">
+          <div class="time-title">Haftada 2 TYT denemesi + hata tekrarı</div>
+          <div class="time-detail">Son 7 günde deneme sayısını artır, yeni konu çalışma. Sadece hata tekrarı ve soru çözümü.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="success-box">
+      Önemli hatırlatma: Eşit ağırlık için TYT'de Türkçe ve Sosyal puanın ağırlığı çok yüksektir. Matematikten 10 doğru alırken Türkçe'den 30+, Sosyal'den 15+ hedeflemelisin.
+    </div>
+  </div>
+</div>
+
+<script>
+const SUBJECTS = {
+  turkce: { label: 'Türkçe', accent: 'var(--accent-turkce)', bg: 'rgba(16, 185, 129, 0.1)' },
+  mat: { label: 'Matematik', accent: 'var(--accent-mat)', bg: 'rgba(245, 158, 11, 0.1)' },
+  fen: { label: 'Fen', accent: 'var(--accent-fen)', bg: 'rgba(59, 130, 246, 0.1)' },
+  sosyal: { label: 'Sosyal', accent: 'var(--accent-sosyal)', bg: 'rgba(139, 92, 246, 0.1)' },
+  tekrar: { label: 'Tekrar/Deneme', accent: 'var(--accent-tekrar)', bg: 'rgba(239, 68, 68, 0.1)' }
+};
+
+const PROGRAM = [
+  {
+    week: 1, title: 'Temel Kavramlar Haftası',
+    badge: 'Başlangıç', badgeColor: '#e8f8f0', badgeText: '#27ae60',
+    days: [
+      { day: 'Pazartesi', sessions: [
+        { subj: 'turkce', topic: 'Ses bilgisi & Hece yapısı', sure: '90 dk', details: 'Ünlü-ünsüz kuralları, ses olayları' },
+        { subj: 'sosyal', topic: 'Tarih: Osmanlı\'nın kuruluşu', sure: '90 dk', details: 'Kuruluş dönemi, Osman Bey' },
+        { subj: 'fen', topic: 'Biyoloji: Hücre yapısı', sure: '90 dk', details: 'Prokaryot-ökaryot, organeller' },
+        { subj: 'mat', topic: 'Sayı sistemleri temelleri', sure: '60 dk', details: 'Doğal sayılar, tam sayılar' },
+        { subj: 'turkce', topic: 'Ses bilgisi tekrarı & sorular', sure: '60 dk', details: 'Soru bankası çözümü' }
+      ]},
+      { day: 'Salı', sessions: [
+        { subj: 'turkce', topic: 'Sözcük türleri: İsimler', sure: '90 dk', details: 'İsim çeşitleri, isim tamlaması' },
+        { subj: 'mat', topic: 'Sayı sistemleri: Bölme & çarpma', sure: '90 dk', details: 'Temel işlemler, soru tipleri' },
+        { subj: 'sosyal', topic: 'Osmanlı yükseliş dönemi', sure: '90 dk', details: 'Fatih, İstanbul\'un fethi' },
+        { subj: 'fen', topic: 'Biyoloji: Hücre organelleri detay', sure: '60 dk', details: '20 soru çözümü' },
+        { subj: 'turkce', topic: 'İsim tekrarı & sorular', sure: '40 dk', details: 'Günün özeti' }
+      ]},
+      { day: 'Çarşamba', sessions: [
+        { subj: 'turkce', topic: 'Sıfatlar & Zamirler', sure: '90 dk', details: 'Sıfat çeşitleri, örnek sorular' },
+        { subj: 'fen', topic: 'Kimya: Atom teorisi', sure: '90 dk', details: 'Atom yapısı, elektron dizilimi' },
+        { subj: 'mat', topic: 'Bölünebilme kuralları', sure: '90 dk', details: '2, 3, 4, 5, 9, 10\'a bölünme' },
+        { subj: 'sosyal', topic: 'Coğrafya: Türkiye\'nin konumu', sure: '60 dk', details: 'Koordinatlar, iklim bölgeleri' },
+        { subj: 'turkce', topic: 'Zamirler tekrar & sorular', sure: '40 dk', details: 'Kısa soru çözümü' }
+      ]},
+      { day: 'Perşembe', sessions: [
+        { subj: 'turkce', topic: 'Fiiller: Kök & yapı', sure: '90 dk', details: 'Fiil çeşitleri, mastar' },
+        { subj: 'fen', topic: 'Kimya: Periyodik tablo', sure: '90 dk', details: 'Periyot & grup, metal-ametal' },
+        { subj: 'sosyal', topic: 'Coğrafya: Fiziki coğrafya', sure: '90 dk', details: 'Dağlar, ovalar, akarsular' },
+        { subj: 'mat', topic: 'EBOB-EKOK', sure: '60 dk', details: 'Temel soru tipleri' },
+        { subj: 'tekrar', topic: 'Hafta özeti tekrarı', sure: '40 dk', details: 'Tüm notları gözden geçir' }
+      ]},
+      { day: 'Cuma', sessions: [
+        { subj: 'turkce', topic: 'Fiil çekimi & kip', sure: '90 dk', details: 'Haber & dilek kipleri' },
+        { subj: 'fen', topic: 'Fizik: Madde ve özellikleri', sure: '90 dk', details: 'Yoğunluk, hal değişimi' },
+        { subj: 'sosyal', topic: 'Tarih: Osmanlı gerileme', sure: '90 dk', details: '17-18. yy olayları' },
+        { subj: 'mat', topic: 'Kesirler & ondalıklı sayılar', sure: '60 dk', details: 'Temel işlemler' },
+        { subj: 'tekrar', topic: '1. Haftanın genel tekrarı', sure: '40 dk', details: 'Notları gözden geçir' }
+      ]},
+      { day: 'Cumartesi', sessions: [
+        { subj: 'turkce', topic: 'Yazım kuralları 1', sure: '90 dk', details: 'Büyük harf, ayrı-bitişik yazım' },
+        { subj: 'fen', topic: 'Fizik: Kuvvet & hareket temeli', sure: '90 dk', details: 'Kuvvet çeşitleri, Newton' },
+        { subj: 'mat', topic: 'Oran-orantı temeli', sure: '90 dk', details: 'Doğru-ters orantı soru tipleri' },
+        { subj: 'sosyal', topic: 'Coğrafya: Beşeri coğrafya temeli', sure: '90 dk', details: 'Nüfus, yerleşme' }
+      ]},
+      { day: 'Pazar', sessions: [
+        { subj: 'tekrar', topic: '1. Hafta tam tekrar', sure: '120 dk', details: 'Tüm konuların hızlı gözden geçirilmesi' },
+        { subj: 'turkce', topic: 'Noktalama işaretleri', sure: '90 dk', details: 'Nokta, virgül, iki nokta kuralları' },
+        { subj: 'mat', topic: 'Oran-orantı soru çözümü', sure: '60 dk', details: 'Soru bankası' },
+        { subj: 'fen', topic: 'Fen 1. hafta tekrar sorular', sure: '60 dk', details: 'Hücre + Kimya sorular' }
+      ]}
+    ]
+  },
+  {
+    week: 2, title: 'Konu Derinleştirme',
+    badge: '2. Hafta', badgeColor: '#eaf4fb', badgeText: '#2980b9',
+    days: [
+      { day: 'Pazartesi', sessions: [
+        { subj: 'turkce', topic: 'Anlam bilgisi: Sözcükte anlam', sure: '90 dk', details: 'Gerçek-mecaz-yan anlam' },
+        { subj: 'mat', topic: 'Yüzde hesapları', sure: '90 dk', details: 'Yüzde artış-azalış, kar-zarar' },
+        { subj: 'fen', topic: 'Fizik: Sürat & hız', sure: '90 dk', details: 'Ortalama hız, grafik yorumlama' },
+        { subj: 'sosyal', topic: 'Tarih: Kurtuluş Savaşı 1', sure: '90 dk', details: 'Mondros, Sevr, işgaller' }
+      ]},
+      { day: 'Salı', sessions: [
+        { subj: 'turkce', topic: 'Cümlede anlam & çeşitleri', sure: '90 dk', details: 'Anlam ilişkileri, deyim-atasözü' },
+        { subj: 'fen', topic: 'Kimya: Kimyasal bağlar', sure: '90 dk', details: 'İyonik, kovalent bağlar' },
+        { subj: 'mat', topic: 'Faiz problemleri', sure: '90 dk', details: 'Basit faiz soru tipleri' },
+        { subj: 'sosyal', topic: 'Tarih: Kurtuluş Savaşı 2', sure: '90 dk', details: 'Cepheler, Mudanya' }
+      ]},
+      { day: 'Çarşamba', sessions: [
+        { subj: 'turkce', topic: 'Paragraf: Ana fikir', sure: '90 dk', details: 'Ana fikir bulma teknikleri' },
+        { subj: 'fen', topic: 'Biyoloji: Canlı çeşitliliği', sure: '90 dk', details: 'Sınıflandırma, tür kavramı' },
+        { subj: 'mat', topic: 'Temel denklemler', sure: '90 dk', details: '1. derece denklem çözümü' },
+        { subj: 'sosyal', topic: 'Felsefe: Varlık & bilgi fels.', sure: '90 dk', details: 'Temel kavramlar' }
+      ]},
+      { day: 'Perşembe', sessions: [
+        { subj: 'turkce', topic: 'Paragraf: Başlık & konu', sure: '90 dk', details: 'Başlık bulma, konu tespiti' },
+        { subj: 'fen', topic: 'Fizik: Newton kanunları', sure: '90 dk', details: '3 yasa, uygulama soruları' },
+        { subj: 'sosyal', topic: 'Tarih: Cumhuriyet\'in ilanı', sure: '90 dk', details: '1923-1930 inkılaplar' },
+        { subj: 'mat', topic: 'Problem çözme: Yaş prob.', sure: '90 dk', details: 'Yaş problemleri soru tipleri' }
+      ]},
+      { day: 'Cuma', sessions: [
+        { subj: 'turkce', topic: 'Paragraf: Düşünce geliştirme', sure: '90 dk', details: 'Örnek, karşılaştırma, tanım' },
+        { subj: 'fen', topic: 'Kimya: Karışımlar', sure: '90 dk', details: 'Homojen-heterojen, ayırma yöntemleri' },
+        { subj: 'mat', topic: 'Problem: İşçi-havuz', sure: '90 dk', details: 'İşçi ve havuz soru tipleri' },
+        { subj: 'sosyal', topic: 'Coğrafya: İklim tipleri', sure: '90 dk', details: 'Türkiye iklim bölgeleri' }
+      ]},
+      { day: 'Cumartesi', sessions: [
+        { subj: 'turkce', topic: 'Yazım kuralları 2', sure: '90 dk', details: 'İki nokta, tırnak, parantez' },
+        { subj: 'sosyal', topic: 'Din Kültürü temel konular', sure: '90 dk', details: 'İslam tarihi, temel kavramlar' },
+        { subj: 'fen', topic: 'Biyoloji: Ekosistem', sure: '90 dk', details: 'Besin zinciri, enerji akışı' },
+        { subj: 'mat', topic: 'Küme teorisi temeli', sure: '90 dk', details: 'Küme operasyonları, Venn' }
+      ]},
+      { day: 'Pazar', sessions: [
+        { subj: 'tekrar', topic: '2. Hafta tam tekrar', sure: '120 dk', details: 'Hata analizi, eksik konular' },
+        { subj: 'turkce', topic: 'Türkçe genel soru çözümü', sure: '90 dk', details: '30 karma soru çöz' },
+        { subj: 'fen', topic: 'Fen genel soru çözümü', sure: '60 dk', details: '20 karma fen sorusu' },
+        { subj: 'mat', topic: 'Mat genel tekrar', sure: '60 dk', details: 'Hatalı konulara odaklan' }
+      ]}
+    ]
+  },
+  {
+    week: 3, title: 'Soru Çözümü & Pekiştirme',
+    badge: '3. Hafta', badgeColor: '#fef5e7', badgeText: '#e67e22',
+    days: [
+      { day: 'Pazartesi', sessions: [
+        { subj: 'turkce', topic: 'Paragraf: Yorumlama soruları', sure: '90 dk', details: '20+ paragraf sorusu çöz' },
+        { subj: 'fen', topic: 'Fizik: Basit makineler', sure: '90 dk', details: 'Kaldıraç, makara, çark' },
+        { subj: 'mat', topic: 'Hız-yol-zaman problemleri', sure: '90 dk', details: 'Temel tip sorular' },
+        { subj: 'sosyal', topic: 'Tarih: 1930-1950 dönemi', sure: '90 dk', details: 'Çok partili dönem' }
+      ]},
+      { day: 'Salı', sessions: [
+        { subj: 'turkce', topic: 'Cümle bilgisi: Özne-yüklem', sure: '90 dk', details: 'Cümle ögeleri, örnek sorular' },
+        { subj: 'fen', topic: 'Kimya: Asit-baz temeli', sure: '90 dk', details: 'pH kavramı, nötralleşme' },
+        { subj: 'sosyal', topic: 'Psikoloji: Temel kavramlar', sure: '90 dk', details: 'Davranış, algı, öğrenme' },
+        { subj: 'mat', topic: 'Karma problem çözümü', sure: '90 dk', details: 'TYT tipi 10 problem' }
+      ]},
+      { day: 'Çarşamba', sessions: [
+        { subj: 'turkce', topic: 'Cümle bilgisi: Nesne-dolaylı t.', sure: '90 dk', details: 'Cümle ögeleri devam' },
+        { subj: 'fen', topic: 'Biyoloji: Sinir sistemi', sure: '90 dk', details: 'Nöron yapısı, refleks' },
+        { subj: 'mat', topic: 'Sayı dizileri & örüntüler', sure: '90 dk', details: 'Aritmetik-geometrik dizi temeli' },
+        { subj: 'sosyal', topic: 'Coğrafya: Türkiye ekonomisi', sure: '90 dk', details: 'Tarım, sanayi, turizm' }
+      ]},
+      { day: 'Perşembe', sessions: [
+        { subj: 'turkce', topic: 'Anlam bilgisi tekrar', sure: '90 dk', details: '25 karma Türkçe sorusu' },
+        { subj: 'fen', topic: 'Fizik: Elektrik temel', sure: '90 dk', details: 'Yük, akım, devre' },
+        { subj: 'sosyal', topic: 'Tarih: Soğuk Savaş dönemi Türkiye', sure: '90 dk', details: 'NATO, dış politika' },
+        { subj: 'mat', topic: 'Toplam-fark prob. çözümü', sure: '90 dk', details: '10 TYT tipi problem' }
+      ]},
+      { day: 'Cuma', sessions: [
+        { subj: 'turkce', topic: 'Paragraf karma sorular', sure: '90 dk', details: '30 paragraf sorusu' },
+        { subj: 'fen', topic: 'Kimya: Kimyasal reaksiyonlar', sure: '90 dk', details: 'Denklem denkleştirme' },
+        { subj: 'mat', topic: 'Olası TYT mat soruları', sure: '90 dk', details: 'Geçmiş TYT sorularından 20 adet' },
+        { subj: 'sosyal', topic: 'Felsefe: Etik & değerler', sure: '90 dk', details: 'Ahlak felsefesi, değer kavramı' }
+      ]},
+      { day: 'Cumartesi', sessions: [
+        { subj: 'tekrar', topic: '1. TYT Denemesi', sure: '135 dk', details: 'Tüm test — sınav koşullarında çöz' },
+        { subj: 'tekrar', topic: 'Deneme hata analizi', sure: '90 dk', details: 'Her yanlış soru için konu tekrarı' },
+        { subj: 'mat', topic: 'Hatalı mat sorularını tekrar', sure: '60 dk', details: 'Denemeden gelen hatalar' }
+      ]},
+      { day: 'Pazar', sessions: [
+        { subj: 'turkce', topic: '3. hafta Türkçe tekrar', sure: '90 dk', details: 'Eksik konuları kapat' },
+        { subj: 'sosyal', topic: '3. hafta Sosyal tekrar', sure: '90 dk', details: 'Tarih kronoloji özeti' },
+        { subj: 'fen', topic: '3. hafta Fen tekrar', sure: '90 dk', details: 'Fizik + kimya özet' },
+        { subj: 'mat', topic: 'Temel konuları tekrar et', sure: '60 dk', details: 'En sık hatalı konular' }
+      ]}
+    ]
+  },
+  {
+    week: 4, title: 'Final Haftası — Yoğun Tekrar',
+    badge: 'Son Hafta', badgeColor: '#fdecea', badgeText: '#e94560',
+    days: [
+      { day: 'Pazartesi', sessions: [
+        { subj: 'turkce', topic: 'Türkçe tüm konular özet', sure: '90 dk', details: 'Baştan sona hızlı geçiş' },
+        { subj: 'sosyal', topic: 'Sosyal tüm konular özet', sure: '90 dk', details: 'Tarih kronoloji tablosu' },
+        { subj: 'fen', topic: 'Fen tüm konular özet', sure: '90 dk', details: 'Önemli formüller ve kavramlar' },
+        { subj: 'mat', topic: 'Matematik özet + sorular', sure: '90 dk', details: 'Çözebileceğin 10 tip soru' }
+      ]},
+      { day: 'Salı', sessions: [
+        { subj: 'tekrar', topic: '2. TYT Denemesi', sure: '135 dk', details: 'Sınav koşullarında tam deneme' },
+        { subj: 'tekrar', topic: 'Detaylı hata analizi', sure: '120 dk', details: 'Her bölüm için hata oranı hesapla' },
+        { subj: 'turkce', topic: 'Türkçe hata tekrarı', sure: '60 dk', details: 'Denemeden gelen yanlışlar' }
+      ]},
+      { day: 'Çarşamba', sessions: [
+        { subj: 'turkce', topic: 'Paragraf yoğun çalışma', sure: '90 dk', details: '40 paragraf sorusu çöz' },
+        { subj: 'sosyal', topic: 'Tarih kronoloji tekrarı', sure: '90 dk', details: 'Olay-tarih eşleştirme' },
+        { subj: 'fen', topic: 'Fen soru çözümü', sure: '90 dk', details: '30 karma soru' },
+        { subj: 'mat', topic: 'En çok çıkan konular', sure: '60 dk', details: 'Oran-orantı + yüzde sprint' }
+      ]},
+      { day: 'Perşembe', sessions: [
+        { subj: 'tekrar', topic: '3. TYT Denemesi', sure: '135 dk', details: 'Son koşu — sınav koşulları' },
+        { subj: 'tekrar', topic: 'Hata takibi & konu tekrar', sure: '120 dk', details: 'Sadece zayıf noktalara bak' },
+        { subj: 'turkce', topic: 'Son Türkçe soruları', sure: '60 dk', details: '20 paragraf, 10 dil bilgisi' }
+      ]},
+      { day: 'Cuma', sessions: [
+        { subj: 'turkce', topic: 'Türkçe hafif tekrar', sure: '60 dk', details: 'Stresinizi artırmayın, hafif geçin' },
+        { subj: 'sosyal', topic: 'Sosyal hafif tekrar', sure: '60 dk', details: 'Sadece notlarına bak' },
+        { subj: 'fen', topic: 'Fen hafif tekrar', sure: '60 dk', details: 'Formüller ve kavramlar' },
+        { subj: 'mat', topic: '5-6 kolay soru tipi', sure: '30 dk', details: 'Bunları garantile' }
+      ]},
+      { day: 'Cumartesi', sessions: [
+        { subj: 'tekrar', topic: 'Sınav günü hazırlığı', sure: '60 dk', details: 'Evrak, kalem, saat kontrolü' },
+        { subj: 'tekrar', topic: 'Sadece gözden geçirme', sure: '60 dk', details: 'Yeni konu çalışma. Dinlen.' }
+      ]},
+      { day: 'Pazar — SINAV', sessions: [
+        { subj: 'tekrar', topic: 'TYT SINAV GÜNÜ', sure: '—', details: 'Erkenden kalk, sakin ol, güven kendine. Başarılar!' }
+      ]}
+    ]
+  }
+];
+
+function getStorageKey(week, day, sessionIdx) {
+  return `tyt_w${week}_d${day}_s${sessionIdx}`;
+}
+
+function isCompleted(week, day, sessionIdx) {
+  return localStorage.getItem(getStorageKey(week, day, sessionIdx)) === '1';
+}
+
+function toggleCompleted(week, day, sessionIdx, el) {
+  const key = getStorageKey(week, day, sessionIdx);
+  const current = localStorage.getItem(key) === '1';
+  if (current) {
+    localStorage.removeItem(key);
+    el.classList.remove('completed');
+  } else {
+    localStorage.setItem(key, '1');
+    el.classList.add('completed');
+  }
+  updateProgress();
+}
+
+function countAll() {
+  let total = 0;
+  PROGRAM.forEach(w => w.days.forEach(d => total += d.sessions.length));
+  return total;
+}
+
+function countDone() {
+  let done = 0;
+  PROGRAM.forEach((w, wi) => w.days.forEach((d, di) => d.sessions.forEach((_, si) => {
+    if (localStorage.getItem(getStorageKey(wi+1, di, si)) === '1') done++;
+  })));
+  return done;
+}
+
+function updateProgress() {
+  const total = countAll();
+  const done = countDone();
+  const pct = Math.round((done / total) * 100);
+  document.getElementById('ilerleme-yuzde').textContent = '%' + pct;
+  document.getElementById('ilerleme-bar').style.width = pct + '%';
+}
+
+function updateCountdown() {
+  const sinav = new Date('2026-06-14');
+  const today = new Date();
+  const diff = Math.ceil((sinav - today) / (1000 * 60 * 60 * 24));
+  document.getElementById('gunSayac').innerHTML = diff > 0 ? diff + ' <span>gün</span>' : 'Bugün!';
+  document.getElementById('sinav-gun').textContent = diff > 0 ? diff : '0';
+}
+
+function renderProgram() {
+  const container = document.getElementById('weeks-container');
+  container.innerHTML = '';
+  
+  const today = new Date();
+  const startDate = new Date('2026-04-05'); // Program başlangıç tarihi
+  
+  PROGRAM.forEach((week, wi) => {
+    const wdiv = document.createElement('div');
+    wdiv.className = 'week-container';
+    wdiv.innerHTML = `
+      <div class="week-header">
+        <div class="week-title">${week.week}. Hafta — ${week.title}</div>
+        <span class="week-badge" style="background:${week.badgeColor};color:${week.badgeText}">${week.badge}</span>
+      </div>
+    `;
+    const grid = document.createElement('div');
+    grid.className = 'days-grid';
+    
+    week.days.forEach((day, di) => {
+      const card = document.createElement('div');
+      card.className = 'day-card';
+      
+      // Bugün kontrolü
+      const dayOffset = (wi * 7) + di;
+      const cardDate = new Date(startDate);
+      cardDate.setDate(startDate.getDate() + dayOffset);
+      const isToday = cardDate.toDateString() === today.toDateString();
+      
+      if (isToday) card.classList.add('active-day');
+      if (isToday) card.style.borderColor = 'var(--accent-fen)';
+
+      let sessionsHTML = '';
+      day.sessions.forEach((s, si) => {
+        const done = isCompleted(wi+1, di, si);
+        const subj = SUBJECTS[s.subj];
+        sessionsHTML += `
+          <div class="session${done ? ' completed' : ''}" 
+               data-week="${wi+1}" data-day="${di}" data-si="${si}" 
+               onclick="toggleSession(this)">
+            <div class="session-check"></div>
+            <div class="session-content">
+              <span class="session-subject" style="background:${subj.bg};color:${subj.accent}">${subj.label}</span>
+              <div class="session-topic">${s.topic}</div>
+              <div class="session-meta">${s.sure} · ${s.details}</div>
+            </div>
+          </div>
+        `;
+        if (si < day.sessions.length - 1 && si % 2 === 1) {
+          sessionsHTML += `
+            <div class="break-row">
+              <div class="break-line"></div>
+              <div class="break-label">15 DK MOLA</div>
+              <div class="break-line"></div>
+            </div>`;
+        }
+      });
+      card.innerHTML = `
+        <div class="day-header">
+          <div class="day-name">${day.day}${isToday ? ' (Bugün)' : ''}</div>
+          <div class="day-date">Hafta ${wi+1} · Gün ${di+1}</div>
+        </div>
+        <div class="sessions">${sessionsHTML}</div>
+      `;
+      grid.appendChild(card);
+    });
+    wdiv.appendChild(grid);
+    container.appendChild(wdiv);
+  });
+}
+
+function toggleSession(el) {
+  const week = parseInt(el.dataset.week);
+  const day = parseInt(el.dataset.day);
+  const si = parseInt(el.dataset.si);
+  toggleCompleted(week, day, si, el);
+}
+
+function showTab(name) {
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.getElementById('tab-' + name).classList.add('active');
+  event.target.classList.add('active');
+}
+
+updateCountdown();
+renderProgram();
+updateProgress();
+</script>
